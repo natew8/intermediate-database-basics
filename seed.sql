@@ -160,7 +160,8 @@
 
 -- SELECT * FROM practice_delete;
 
--------------eCommerce Simulation-------------
+
+-- -------------eCommerce Simulation-------------
 
 -- CREATE TABLE users (
 --   user_id SERIAL PRIMARY KEY,
@@ -173,12 +174,12 @@
 --   name VARCHAR(200),
 --   price INT
 --  );
--- DROP TABLE orders;
+
 -- CREATE TABLE orders (
---   order_id SERIAL PRIMARY KEY,
---   product_id INT REFERENCES products(product_id),
---   order_item VARCHAR(200),
---   order_date TIMESTAMP  
+--   orders_id SERIAL PRIMARY KEY,
+--   order_id INT, 
+--   customer_id INT REFERENCES users(user_id),
+--   product_id INT REFERENCES products(product_id)
 -- );
 
 -- INSERT INTO users (name,email)
@@ -188,3 +189,21 @@
 -- INSERT INTO products (name, price)
 -- VALUES('Guitar',1500),('Hairbrush',10),('Dinosaur',100),('Diapers',30),('Shirt',25),('Robot',300),('House',5000),('KitchenAid',250),('Arial Silks',400);
 -- SELECT * FROM products;
+
+-- INSERT INTO orders (order_id, customer_id, product_id)
+-- VALUES (1, 3, 6),(1,3,6),(1, 3, 4),(1,3,8),(1,3,1),(2,1,4),(2,1,3),(3,2,9),(3,2,7),(3,2,7),(3,2,7),(4,4,5),(4,4,6),(4,4,7);
+-- SELECT * FROM orders;
+
+-- SELECT p.name FROM orders o
+-- JOIN products p ON p.product_id = o.product_id 
+-- WHERE o.order_id = 1;
+
+-- SELECT * FROM orders;
+
+-- SELECT SUM(p.price) FROM orders o 
+-- JOIN products p ON p.product_id = o.product_id
+-- WHERE o.order_id = 3;
+
+-- SELECT COUNT (DISTINCT o.order_id) FROM orders o
+-- JOIN users u ON u.user_id = o.customer_id
+-- WHERE u.name = 'Kaylie';
